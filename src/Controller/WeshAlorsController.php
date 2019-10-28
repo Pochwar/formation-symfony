@@ -9,14 +9,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class WeshAlorsController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/wesh-alors", name="index")
      */
     public function index()
     {
         $content = '';
 
         for ($i = 0; $i < 100; $i++) {
-            $content = $content . "<br>Wesh Alors";
+            $k = '';
+            for ($j = 0; $j < rand(1, 100); $j++) {
+                $k = $k . '-';
+            }
+            $content = $content . "<br>" . $k . "Wesh Alors";
         }
         return new Response($content);
     }
