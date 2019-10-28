@@ -17,7 +17,7 @@ class WeshAlorsController extends AbstractController
 
         for ($i = 0; $i < 100; $i++) {
             $k = '';
-            for ($j = 0; $j < rand(1, 100); $j++) {
+            for ($j = 0; $j < rand(1, 1000); $j++) {
                 $k = $k . '-';
             }
             $content = $content . "<br>" . $k . "Wesh Alors";
