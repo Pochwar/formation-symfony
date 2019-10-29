@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HelloWorldController!{% endblock %}
+{% set hello = 'Hello' %}
+{% set world = 'World' %}
+
+{% block title %}{{ hello }} {{ world }} - {{ parent() }}{% endblock %}
 
 {% block body %}
 <style>
@@ -11,14 +14,41 @@
 <div class="example-wrapper">
     <h1 id="title"></h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/berip/www/test/formation-symfony/form-nantes/src/Controller/HelloWorldController.php'|file_link(0) }}">src/Controller/HelloWorldController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/berip/www/test/formation-symfony/form-nantes/templates/hello_world/index.html.twig'|file_link(0) }}">templates/hello_world/index.html.twig</a></code></li>
-    </ul>
-</div>
 
+    <button id="getData">Get Data</button>
+    <br>
+    <img id="img" src="https://media.giphy.com/media/26gJzFBpaPjX1alt6/giphy.gif" alt="">
+    <br>
+    <textarea id="data" cols="50" rows="15"></textarea>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous">
+</script>
 <script>
-    document.getElementById('title').innerHTML = 'Hello World'
+  $('#title').html('{{ hello }} {{ world }}')
+  $('#img').hide()
+
+
+  $('#getData').on('click', function(){
+    $('#img').show()
+    that = $(this);
+    $.ajax({
+      url:'https://jsonplaceholder.typicode.com/todos',
+      type: "GET",
+      dataType: "json",
+      success: function (data)
+      {
+        console.log(data)
+        $('#data').val(JSON.stringify(data));
+
+      }
+    });
+    return false;
+  });
 </script>
 {% endblock %}
