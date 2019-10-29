@@ -9,7 +9,7 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello World</h1>
+    <h1 id="title"></h1>
 
     This friendly message is coming from:
     <ul>
@@ -17,4 +17,8 @@
         <li>Your template at <code><a href="{{ '/home/berip/www/test/formation-symfony/form-nantes/templates/hello_world/index.html.twig'|file_link(0) }}">templates/hello_world/index.html.twig</a></code></li>
     </ul>
 </div>
+
+<script>
+    document.getElementById('title').innerHTML = 'Hello World'
+</script>
 {% endblock %}

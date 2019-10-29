@@ -17,6 +17,9 @@
     "doctrine/lexer": {
         "version": "1.1.0"
     },
+    "facebook/webdriver": {
+        "version": "1.7.1"
+    },
     "nikic/php-parser": {
         "version": "v4.2.5"
     },
@@ -112,6 +115,12 @@
             "src/Kernel.php"
         ]
     },
+    "symfony/http-client": {
+        "version": "v4.3.5"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v1.1.7"
+    },
     "symfony/http-foundation": {
         "version": "v4.3.5"
     },
@@ -129,6 +138,9 @@
     },
     "symfony/mime": {
         "version": "v4.3.5"
+    },
+    "symfony/panther": {
+        "version": "v0.6.0"
     },
     "symfony/phpunit-bridge": {
         "version": "4.3",
@@ -157,6 +169,9 @@
     },
     "symfony/polyfill-php73": {
         "version": "v1.12.0"
+    },
+    "symfony/process": {
+        "version": "v4.3.5"
     },
     "symfony/requirements-checker": {
         "version": "1.0",
