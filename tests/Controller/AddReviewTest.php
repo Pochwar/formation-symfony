@@ -25,6 +25,8 @@ class AddReviewTest extends PantherTestCase
             'review[content]' => 'some content'
         ]);
 
+        // follow redirection triggered after success submit
+        $client->followRedirect();
 
         // test success message is displayed after form submit
         /*
