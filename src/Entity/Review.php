@@ -2,16 +2,32 @@
 
 declare(strict_types = 1);
 
-namespace App\Model;
+namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * @ORM\Entity()
+ */
 class Review
 {
+    /**
+     * @var int
+     * @Assert\NotBlank()
+     * @ORM\Column()
+     * @Id
+     * @GeneratedValue
+     */
+    private $id;
+
     /**
      * @var string
      * @Assert\NotBlank()
      * @Assert\Length(max=1024)
+     * @ORM\Column()
      */
     private $content;
 
@@ -19,6 +35,7 @@ class Review
      * @var int
      * @Assert\NotBlank()
      * @Assert\Range(min="2018", max="2022")
+     * @ORM\Column()
      */
     private $year;
 
@@ -27,10 +44,27 @@ class Review
      * @param string $content
      * @param int $year
      */
-    public function __construct(string $content, int $year)
+    public function __construct(int $id, string $content, int $year)
     {
+        $this->id = $id;
         $this->content = $content;
         $this->year = $year;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     /**
