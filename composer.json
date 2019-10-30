@@ -14,6 +14,7 @@
         "symfony/yaml": "4.3.*"
     },
     "require-dev": {
+        "symfony/debug-pack": "^1.0",
         "symfony/maker-bundle": "^1.14",
         "symfony/panther": "^0.6.0",
         "symfony/requirements-checker": "^1.1",
