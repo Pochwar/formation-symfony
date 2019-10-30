@@ -2,6 +2,7 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\Review;
 use Symfony\Component\Panther\PantherTestCase;
 
 class AddReviewTest extends PantherTestCase
@@ -42,6 +43,12 @@ class AddReviewTest extends PantherTestCase
             $inputFieldReviewContent->attr('value'),
             'The content input is not empty'
         );
+
+        $reviews = $client->getContainer()->get('doctrine')
+            ->getRepository(Review::class)
+            ->findAll();
+
+        $this->assertCount(1, $reviews);
 
     }
 }
