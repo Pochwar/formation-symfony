@@ -23,7 +23,8 @@ class AddReviewTest extends PantherTestCase
 
         // submit form
         $client->submit($addReviewForm->form(), [
-            'review[content]' => 'some content'
+            'review[content]' => 'some content',
+            'review[year]' => 2019,
         ]);
 
         // follow redirection triggered after success submit
