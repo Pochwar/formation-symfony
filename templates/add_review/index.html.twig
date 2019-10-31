@@ -15,6 +15,7 @@
         <div class="success">{{ message }}</div>
     {% endfor %}
 
+    {{ form_errors() }}
     {{ form_start(add_review_form) }}
         {{ form_row(add_review_form.content) }}
         {{ form_row(add_review_form.year) }}
