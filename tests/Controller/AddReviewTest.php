@@ -39,7 +39,7 @@ class AddReviewTest extends PantherTestCase
         $this->assertSelectorExists('div.success');
 
         // test input is empty after form submit
-        $inputFieldReviewContent = $client->getCrawler()->filter('input[name="review[content]"]');
+        $inputFieldReviewContent = $client->getCrawler()->filter('textarea[name="review[content]"]');
         $this->assertEmpty(
             $inputFieldReviewContent->attr('value'),
             'The content input is not empty'
