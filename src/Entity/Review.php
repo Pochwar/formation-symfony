@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -16,8 +17,7 @@ class Review
 {
     /**
      * @var int
-     * @Assert\NotBlank()
-     * @ORM\Column()
+     * @Column(type="integer")
      * @Id
      * @GeneratedValue
      */
@@ -40,18 +40,6 @@ class Review
     private $year;
 
     /**
-     * Review constructor.
-     * @param string $content
-     * @param int $year
-     */
-    public function __construct(int $id, string $content, int $year)
-    {
-        $this->id = $id;
-        $this->content = $content;
-        $this->year = $year;
-    }
-
-    /**
      * @return int
      */
     public function getId(): int
@@ -70,7 +58,7 @@ class Review
     /**
      * @return string
      */
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->content;
     }
@@ -86,7 +74,7 @@ class Review
     /**
      * @return int
      */
-    public function getYear(): int
+    public function getYear(): ?int
     {
         return $this->year;
     }

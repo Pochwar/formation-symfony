@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Review;
 use App\Form\ReviewType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class AddReviewController
 {
@@ -30,20 +32,28 @@ class AddReviewController
     private $formFactory;
 
     /**
+     * @var RegistryInterface
+     */
+    private $doctrine;
+
+    /**
      * AddReviewController constructor.
      * @param Environment $twig
      * @param UrlGeneratorInterface $router
      * @param FormFactoryInterface $formFactory
+     * @param RegistryInterface $doctrine
      */
     public function __construct(
         Environment $twig,
         UrlGeneratorInterface $router,
-        FormFactoryInterface $formFactory
+        FormFactoryInterface $formFactory,
+        RegistryInterface $doctrine
     )
     {
         $this->twig = $twig;
         $this->router = $router;
         $this->formFactory = $formFactory;
+        $this->doctrine = $doctrine;
     }
 
 
@@ -59,10 +69,10 @@ class AddReviewController
      */
     public function index(Request $request, Session $session)
     {
-        $form = $this->formFactory->create(ReviewType::class,
-            [
+        $review = new Review();
 
-            ],
+        $form = $this->formFactory->create(ReviewType::class,
+            $review,
             [
             'action' =>  $this->router->generate('add_review')
             ]
@@ -71,6 +81,10 @@ class AddReviewController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->doctrine->getManager()->persist($review);
+            $this->doctrine->getManager()->flush();
+
             $session->getFlashBag()->add('success', 'Your review has been submitted successfully');
             return new RedirectResponse($this->router->generate('add_review'));
         }

@@ -12,6 +12,7 @@ class ReviewType extends AbstractType
     {
         $builder
             ->add('content')
+            ->add('year')
         ;
     }
 
