@@ -11,6 +11,10 @@ class ReviewManager implements ReviewManagerInterface
      */
     private $doctrine;
 
+    /**
+     * ReviewManager constructor.
+     * @param RegistryInterface $doctrine
+     */
     public function __construct(RegistryInterface $doctrine)
     {
         $this->doctrine = $doctrine;
